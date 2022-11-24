@@ -1,0 +1,78 @@
+1. //In ra table danh sách nhân viên//
+2. //Thêm nhân viên mới//
+3. //Tạo đối tượng nhân viên với thông tin lấy từ form người dùng nhập vào.
+Đối tượng nhân viên bao gồm các thuộc tính sau://
+    +Tài khoản
+    +Họ tên
+    +Email
+    +Mật khẩu
+    +Ngày làm
+    +Lương cơ bản
+    +Chức vụ gồm: Giám đốc, Trưởng Phòng, Nhân Viên
+    +Giờ làm trong tháng
+    +Tổng lương
+    +Loại nhân viên
+4. Validation
+    + Tài khoản tối đa 4 - 6 ký số, không để trống//
+    + Tên nhân viên phải là chữ, không để trống//
+    + Email phải đúng định dạng, không để trống//
+    + mật Khẩu từ 6-10 ký tự (chứa ít nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt), không
+    để trống //xong
+    + Ngày làm không để trống, định dạng mm/dd/yyyy
+    + Lương cơ bản 1 000 000 - 20 000 000, không để trống //
+    + Chức vụ phải chọn chức vụ hợp lệ (Giám đốc, Trưởng Phòng, Nhân Viên)
+    + Số giờ làm trong tháng 80 - 200 giờ, không để trống
+5. //Xây dựng phương thức tính tổng lương cho đối tượng nhân viên//
+    +nếu chức vụ là giám đốc: tổng lương = lương cơ bản * 3
+    +nếu chức vụ là trưởng phòng: tổng lương = lương cơ bản * 2
+    +nếu chức vụ là nhân viên: tổng lương = lương cơ bản *1
+6. //Xây dựng phương thức xếp loại cho đối tượng nhân viên://
+    +nếu nhân viên có giờ làm trên 192h (>=192): nhân viên xuất sắc
+    +nếu nhân viên có giờ làm trên 176h (>=176): nhân viên giỏi
+    +nếu nhân viên có giờ làm trên 160h (>=160): nhân viên khá
+    +nếu nhân viên có giờ làm dưới 160h: nhân viên trung bình
+7. //Xóa nhân viên//
+8. Cập nhật nhân viên (có validation)
+9. Tìm Nhân Viên theo loại (xuất săc, giỏi, khá...) và hiển thị
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ . dấu chấm: chọn tất cả các ký tự, trừ xuống hàng
+ \d : bất kỳ ký số nào từ 0-9
+ \D : không phải là số (0-9)
+ \w : là một ký tự hoặc ký số bất kỳ (a-z, A-Z, 0-9, _)
+ \W : !w 
+ \s : khoảng trống(dấu cách, tab, xuống dòng)
+ \S : !s 
+
+ \b : khoảng cách giữa hai từ (tính luôn từ đầu dòng)
+    vd: \bKu với (Ku Kuku) thì chỉ có 2 từ Ku đầu đc chọn
+ \B : không phải là khoảng cách giữa hai từ
+    vd: \bKu với (Ku Kuku) thì chỉ có 1 từ Ku cuối đc chọn
+ ^  : chọn từ là bắt đầu của một chuỗi
+    vd: ^Hi với (Hieu Hihi) thì chỉ có Hi đầu tiên dc chọn
+ $  : chọn từ là kết thúc của một chuỗi (ghi từ đó phía trước đô la)
+    vd: $Hi với (Hieu Hihi) thì không có chỗ nào đc chọn
+
+[] : chấp nhận tất cả những gì ghi trong ngoặc vuông.
+[^] : không chấp nhận tất cả những gì ghi trong ngoặc vuông(sau dấu ^).
+ | : either or
+ () : nhóm được chọn
+
+ * : chọn 0 hoặc nhiều
+ + : chọn 1 hoặc nhiều
+ ? : chọn 0 hoặc chỉ một (ghi trước dấu hỏi)
+ {5} : chọn lặp lại với số lần trong ngoặc.
+ vd: \d\d\d\d => ghi thành \d{4}
