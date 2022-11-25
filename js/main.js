@@ -2,14 +2,16 @@ var listOfStaff = [];
 /*************************** */
 document.getElementById("btnThemNV").onclick = function () {
   if (form_validate()) add_Staff();
+  return;
+};
+document.getElementById("btnCapNhat").onclick = function () {
+  if (form_validate()) update_Staff();
+  return;
 };
 document.getElementById("btnCapNhat").style.display = "none";
 // document.getElementById("btnXoa").style.display = "none"
 /*************************** */
 function add_Staff() {
-  // if (!form_validate()) {
-  //   console.log("Sai cmnr");
-  //   return}
   var _staffID = document.getElementById("tknv").value;
   var _staffFullName = document.getElementById("name").value;
   var _staffEmail = document.getElementById("email").value;
@@ -37,9 +39,6 @@ function add_Staff() {
     }
   }
   listOfStaff.push(staff);
-  //console.log(listOfStaff);
-  // console.log(staff.staffTotalSalary());
-  // console.log(staff.staffRate());
   render_Staff();
   saveStaffToLocal();
 }
@@ -63,23 +62,17 @@ function delete_Staff() {
   saveStaffToLocal();
 }
 /************************************** */
-// var btnClose = document.getElementById("btnDong");
-// btnClose.onclick = function () {
-//   console.log("click vào nút close");
-//   setTimeout(cancel_edit_Staff, 500);
-//   // console.log(ăoejoawjeo);
-// };
+document.getElementById("btnDong").onclick = function () {
+  setTimeout(cancel_edit_Staff, 500);
+};
 
 function edit_Staff(id) {
-  // if (!form_validate()) {
-  //   console.log("Sai cmnr");
-  //   return}
   // form UI
+  document.getElementById("tknv").disabled = true;
   var modal = document.getElementById("myModal");
   var modalTitle = document.getElementById("header-title");
   var modalFooter = document.getElementById("modal-footer");
   var btnAdd = document.getElementById("btnThemNV");
-  var btnClose = document.getElementById("btnDong");
   document.getElementById("btnCapNhat").style.display = "block";
   modal.style.backgroundColor = "#7becd880";
   if (!document.getElementById("btnXoa") == true) {
@@ -92,14 +85,6 @@ function edit_Staff(id) {
   }
   modalTitle.innerHTML = "Edit employ";
   btnAdd.style.display = "none";
-  btnClose.onclick = cancel_edit_Staff;
-  btnClose.onclick = function () {
-    console.log("click vào nút close");
-    setTimeout(cancel_edit_Staff, 500);
-    // console.log(ăoejoawjeo);
-  };
-  // console.log("nhìn con chimmmmmmmmmmmmmmm");
-
   //form display content
   var index = find_StaffByID(id);
   document.getElementById("tknv").value = listOfStaff[index].staffID;
@@ -126,9 +111,10 @@ modal.addEventListener("mousedown", function (event) {
 
 /////////////////////////////////////////
 function cancel_edit_Staff() {
+  console.log("run cancel");
   document.getElementById("btnCapNhat").style.display = "none";
-  if(document.getElementById("btnXoa")) {
-    document.getElementById('btnXoa').style.display = "none";;
+  if (document.getElementById("btnXoa")) {
+    document.getElementById("btnXoa").style.display = "none";
   }
   var modal = document.getElementById("myModal");
   modal.style.backgroundColor = "transparent";
@@ -159,10 +145,6 @@ function find_StaffByID(id) {
   return -1;
 }
 /************************************** */
-document.getElementById("btnCapNhat").onclick = function () {
-  if (form_validate()) update_Staff();
-  return;
-};
 function update_Staff() {
   var id = document.getElementById("tknv").value;
   var index = find_StaffByID(id);
@@ -209,7 +191,6 @@ function search_Staff() {
     .trim();
   var filtered = [];
   for (var i = 0; i < listOfStaff.length; i++) {
-    // console.log(listOfStaff[i].staffRate());
     if (listOfStaff[i].staffRate().includes(keywords)) {
       filtered.push(listOfStaff[i]);
     }
@@ -276,21 +257,21 @@ function check_patten(value, config) {
         "Từ 6-10 ký tự (chứa ít nhất 1 ký tự số, 1 ký tự in hoa, 1 ký tự đặc biệt)";
       break;
     }
-    case "tbNgay": {
-      warningContent = "Nhập đúng ngày-tháng-năm";
-      break;
-    }
+    // case "tbNgay": {
+    //   warningContent = "Nhập đúng ngày-tháng-năm";
+    //   break;
+    // }
     // case "tbLuongCB": {
     //   warningContent = "Lương cơ bản sai";
     //   break;
     // }
-    case "tbChucVu": {
-      warningContent = "Chưa chọn chức vụ ";
-      break;
-    }
-    case "tbGiolam": {
-      warningContent = "Nhập số từ 0-9";
-    }
+    // case "tbChucVu": {
+    //   warningContent = "Chưa chọn chức vụ ";
+    //   break;
+    // }
+    // case "tbGiolam": {
+    //   warningContent = "Nhập số từ 0-9";
+    // }
   }
   if (!config.patten.test(value)) {
     document.getElementById(config.errorID).innerHTML = warningContent;
@@ -342,6 +323,82 @@ function check_staffPosition(value) {
   document.getElementById("tbChucVu").innerHTML = "Vui lòng chọn chức vụ";
   return false;
 }
+// Check date:
+
+function check_date() {
+  // getdata
+  var string = document.getElementById("datepicker").value;
+  var result = true;
+  var warningText = document.getElementById("tbNgay");
+  var mm = Number(string[0] + string[1]);
+  var dd = Number(string[3] + string[4]);
+  var yyyy = Number(string[6] + string[7] + string[8] + string[9]);
+  // Độ dài
+  if (string.length != 10) {
+    warningText.innerHTML = "Định dạng: mm/dd/yyy";
+    result = false;
+  }
+  // Biểu mẫu
+  if (string[2] != "/" || string[5] != "/") {
+    warningText.innerHTML = "Định dạng: mm/dd/yyyy";
+    result = false;
+  }
+  // form nhập vào.
+  if (typeof mm == "NaN" || typeof dd == "NaN" || typeof yyyy == "NaN") {
+    warningText.innerHTML = "Định dạng: mm/dd/yyyy";
+    result = false;
+  }
+  // ngày tháng.
+  // Tháng:
+  if (mm > 12 || mm < 1) {
+    warningText.innerHTML = "Nhập sai tháng";
+    result = false;
+  }
+  // Tháng 2
+  if (mm == 2) {
+    if (yyyy % 4 == 0 && yyyy % 100 != 0) {
+      if (dd > 29 || dd < 0) {
+        warningText.innerHTML = "Nhập sai ngày";
+        result = false;
+      }
+    } else {
+      if (dd > 28 || dd < 0) {
+        warningText.innerHTML = "Nhập sai ngày";
+        result = false;
+      }
+    }
+  }
+  // Tháng 30 ngày:
+  if (
+    mm == 1 ||
+    mm == 3 ||
+    mm == 5 ||
+    mm == 7 ||
+    mm == 8 ||
+    mm == 10 ||
+    mm == 12
+  ) {
+    if (dd < 0 || dd > 31) {
+      warningText.innerHTML = "Nhập sai ngày";
+      result = false;
+    }
+  }
+  // Tháng 31 ngày:
+  if (mm == 3 || mm == 4 || mm == 6 || mm == 9 || mm == 11) {
+    if (dd < 0 || dd > 30) {
+      warningText.innerHTML = "Nhập sai ngày";
+      result = false;
+    }
+  }
+  if (result == true) {
+    warningText.style.display = "none";
+    warningText.innerHTML = "";
+  } else {
+    warningText.style.display = "inline-block";
+  }
+  return result;
+}
+
 //VALIDATE FORM
 function form_validate() {
   var pattenID = /^([0-9])+$/g;
@@ -350,37 +407,35 @@ function form_validate() {
   // var pattenPassWord = /^(?=.*[A-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+{}|:";'<>,.?/])[a-zA-Z\d~!@#$%^&*()_+{}|:";'<>,.?/]{6,10}$/g
   var pattenPassWord =
     /^(?=.*[A-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+{}|:";'<>,.?/])[a-zA-Z\d~!@#$%^&*()_+{}|:";'<>,.?/]{6,10}$/g;
-  // *****valid ID: không để trống, dài từ 4 đến 6 ký tự, patten phải là số: xong.
+  // *****valid ID: không để trống, dài từ 4 đến 6 ký tự, patten phải là số
   var id = document.getElementById("tknv").value;
   var idValid =
     check_required(id, { errorID: "tbTKNV" }) &&
     check_length(id, { errorID: "tbTKNV", min: 4, max: 6 }) &&
     check_patten(id, { errorID: "tbTKNV", patten: pattenID });
 
-  // *****valid ID: không để trống, patten phải là chữ và khoảng trắng: xong
+  // *****valid ID: không để trống, patten phải là chữ và khoảng trắng
   var staffName = document.getElementById("name").value;
   var nameValid =
     check_required(staffName, { errorID: "tbTen" }) &&
     check_patten(staffName, { errorID: "tbTen", patten: pattenName });
 
-  // *****valid ID: không để trống, đúng patten: xong
+  // *****valid ID: không để trống, đúng patten
   var staffEmail = document.getElementById("email").value;
   var emailValid =
     check_required(staffEmail, { errorID: "tbEmail" }) &&
     check_patten(staffEmail, { errorID: "tbEmail", patten: pattenEmail });
 
-  // *****valid PW: không để trống, chứa số, chữ hoa, ký tự đặc biệt: xong
+  // *****valid PW: không để trống, chứa số, chữ hoa, ký tự đặc biệt
   var staffPW = document.getElementById("password").value;
   var passwordValid =
     check_required(staffPW, { errorID: "tbMatKhau" }) &&
     check_patten(staffPW, { errorID: "tbMatKhau", patten: pattenPassWord });
 
-  // ********ngày tháng năm: ĐÉO ĐƯỢC
-
-  // *****valid salary: không để trống, từ 1tr đến 20tr: xong
+  // ********ngày tháng năm:
+  var workingDay = check_date();
+  // *****valid salary: không để trống, từ 1tr đến 20tr
   var salary = document.getElementById("luongCB").value;
-  // console.log(typeof salary);
-  // console.log(typeof Number(salary));
   var salaryValid =
     check_required(salary, { errorID: "tbLuongCB" }) &&
     check_value(Number(salary), {
@@ -407,6 +462,7 @@ function form_validate() {
     nameValid &&
     emailValid &&
     passwordValid &&
+    workingDay &&
     salaryValid &&
     positionValid &&
     workingHoursValid;
