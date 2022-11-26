@@ -75,6 +75,7 @@ function edit_Staff(id) {
   var btnAdd = document.getElementById("btnThemNV");
   document.getElementById("btnCapNhat").style.display = "block";
   modal.style.backgroundColor = "#7becd880";
+  // Kiểm tra nếu chưa có nút xóa thì thêm nút xóa
   if (!document.getElementById("btnXoa") == true) {
     var btnXoa = document.createElement("button");
     btnXoa.innerHTML = "Xóa";
@@ -82,6 +83,9 @@ function edit_Staff(id) {
     btnXoa.className = "btn btn-secondary";
     btnXoa.onclick = delete_Staff;
     modalFooter.appendChild(btnXoa);
+  } else {
+    // Nếu đã có nút xóa thì phải hiện nó lên
+    document.getElementById("btnXoa").style.display = "inline-block"
   }
   modalTitle.innerHTML = "Edit employ";
   btnAdd.style.display = "none";
@@ -122,11 +126,12 @@ function cancel_edit_Staff() {
   btnAdd.style.display = "block";
   var modalTitle = document.getElementById("header-title");
   modalTitle.innerHTML = "login";
+  document.getElementById("tknv").disabled = false;
   document.getElementById("tknv").value = "";
   document.getElementById("name").value = "";
   document.getElementById("email").value = "";
   document.getElementById("password").value = "";
-  document.getElementById("datepicker").value = "";
+  document.getElementById("datepicker").value = "mm/dd/yyyy";
   document.getElementById("luongCB").value = "";
   document.getElementById("chucvu").value = "";
   document.getElementById("gioLam").value = "";
@@ -276,12 +281,12 @@ function check_patten(value, config) {
   if (!config.patten.test(value)) {
     document.getElementById(config.errorID).innerHTML = warningContent;
     document.getElementById(config.errorID).style.display = "inline-block";
-    console.log("Sai patten");
+    // console.log("Sai patten");
     return false;
   }
   document.getElementById(config.errorID).innerHTML = "";
   document.getElementById(config.errorID).style.display = "none";
-  console.log("đúng patten");
+  // console.log("đúng patten");
   return true;
 }
 // Check Salary
@@ -402,7 +407,8 @@ function check_date() {
 //VALIDATE FORM
 function form_validate() {
   var pattenID = /^([0-9])+$/g;
-  var pattenName = /^([A-z ])+$/g;
+  var pattenName = /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$/g;
+  // var pattenName = /^([A-z ])+$/g;
   var pattenEmail = /[A-z_0-9.-]+@[A-z-]+(.)(com|edu|net)/g;
   // var pattenPassWord = /^(?=.*[A-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+{}|:";'<>,.?/])[a-zA-Z\d~!@#$%^&*()_+{}|:";'<>,.?/]{6,10}$/g
   var pattenPassWord =
@@ -466,7 +472,6 @@ function form_validate() {
     salaryValid &&
     positionValid &&
     workingHoursValid;
-  // check_length
   console.log(isAcceptForm);
   return isAcceptForm;
 }
