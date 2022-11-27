@@ -462,7 +462,8 @@ function form_validate() {
     check_patten(staffPW, { errorID: "tbMatKhau", patten: pattenPassWord });
 
   // ********ngày tháng năm:
-  var workingDay = check_date();
+  var date = document.getElementById('datepicker').value;
+  var workingDay = check_required(date, {errorID: "tbNgay"}) && check_date();
   // *****valid salary: không để trống, từ 1tr đến 20tr
   var salary = document.getElementById("luongCB").value;
   var salaryValid =
