@@ -43,6 +43,29 @@ function add_Staff() {
   saveStaffToLocal();
 }
 /************************************** */
+// // Phiên bản có nút xóa bên ngoài
+// function delete_Staff(id) {
+//   if(!id) {
+//    id = document.getElementById("tknv").value;
+//   }
+//   for (let i = 0; i < listOfStaff.length; i++) {
+//     if (listOfStaff[i].staffID === id) {
+//       listOfStaff.splice(i, 1);
+//     }
+//   }
+//   document.getElementById("tknv").value = "";
+//   document.getElementById("name").value = "";
+//   document.getElementById("email").value = "";
+//   document.getElementById("password").value = "";
+//   document.getElementById("datepicker").value = "";
+//   document.getElementById("luongCB").value = "";
+//   document.getElementById("chucvu").value = "";
+//   document.getElementById("gioLam").value = "";
+//   render_Staff();
+//   saveStaffToLocal();
+// }
+
+// Phiên bản không có nút xóa bên ngoài
 function delete_Staff() {
   var id = document.getElementById("tknv").value;
   for (let i = 0; i < listOfStaff.length; i++) {
@@ -476,6 +499,7 @@ function form_validate() {
   return isAcceptForm;
 }
 /************************************** */
+// Phiên bản không có nút xóa bên ngoài
 function render_Staff(data) {
   var dataRender = data || listOfStaff;
   var HTML = "";
@@ -505,6 +529,39 @@ function render_Staff(data) {
   }
   document.getElementById("tableDanhSach").innerHTML = HTML;
 }
+
+// // Phiên bản có nút xóa bên ngoài
+// function render_Staff(data) {
+//   var dataRender = data || listOfStaff;
+//   var HTML = "";
+//   for (var i = 0; i < dataRender.length; i++) {
+//     var id = dataRender[i].staffID;
+//     var fullName = dataRender[i].staffFullName;
+//     var email = dataRender[i].staffEmail;
+//     var pickDate = dataRender[i].staffWorkingDay;
+//     var position = dataRender[i].staffPosition;
+//     var totalSalary = dataRender[i].staffTotalSalary();
+//     var rate = dataRender[i].staffRate();
+//     HTML += `<tr>
+//                     <td>${id}</td>
+//                     <td>${fullName}</td>
+//                     <td>${email}</td>
+//                     <td>${pickDate}</td>
+//                     <td>${position}</td>
+//                     <td>${totalSalary}</td>
+//                     <td>${rate}</td>
+//                     <td>
+//                         <i class="fa fa-edit"
+//                         data-toggle="modal" 
+//                         data-target="#myModal"
+//                         onclick="edit_Staff('${dataRender[i].staffID}')"></i>
+//                         <i class="fa fa-trash"
+//                         onclick="delete_Staff('${dataRender[i].staffID}')"></i>
+//                     </td>
+//                 </tr>`;
+//   }
+//   document.getElementById("tableDanhSach").innerHTML = HTML;
+// }
 /************************************** */
 function saveStaffToLocal() {
   var localData = JSON.stringify(listOfStaff);
