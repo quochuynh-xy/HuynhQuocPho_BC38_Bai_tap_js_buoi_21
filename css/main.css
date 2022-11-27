@@ -21,11 +21,16 @@
 	background-color: transparent;       
 }
 /* ***********CSS */
-td .fa.fa-edit {
+td .fa.fa-edit,
+td .fa.fa-trash {
   color: #ff5100;
   font-size: 1.2rem;
   transition-duration: 0.3s;
 }
-td .fa.fa-edit:hover{
+td .fa.fa-trash {
+  color: black;
+}
+td .fa.fa-edit:hover,
+td .fa.fa-trash:hover {
   cursor: pointer;
 }
