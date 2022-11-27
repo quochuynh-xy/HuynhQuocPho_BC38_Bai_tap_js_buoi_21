@@ -33,4 +33,5 @@ td .fa.fa-trash {
 td .fa.fa-edit:hover,
 td .fa.fa-trash:hover {
   cursor: pointer;
+  color: green;
 }
