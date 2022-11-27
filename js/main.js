@@ -65,6 +65,7 @@ function delete_Staff(id) {
   document.getElementById("gioLam").value = "";
   render_Staff();
   saveStaffToLocal();
+  alert("Đã xóa")
 }
 
 // // Phiên bản không có nút xóa bên ngoài
@@ -197,6 +198,7 @@ function update_Staff() {
   listOfStaff[index].staffTotalWorkingHours = _newTotalWorkingHours;
   render_Staff();
   saveStaffToLocal();
+  alert("đã cập nhật")
 }
 /************************************** */
 document.getElementById("searchName").oninput = function () {
