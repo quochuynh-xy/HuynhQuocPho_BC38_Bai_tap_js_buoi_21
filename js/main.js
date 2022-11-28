@@ -159,7 +159,8 @@ function cancel_edit_Staff() {
   document.getElementById("name").value = "";
   document.getElementById("email").value = "";
   document.getElementById("password").value = "";
-  document.getElementById("datepicker").value = "mm/dd/yyyy";
+  document.getElementById("datepicker").placeholder = "mm/dd/yyyy";
+  document.getElementById("datepicker").value = "";
   document.getElementById("luongCB").value = "";
   document.getElementById("chucvu").value = "";
   document.getElementById("gioLam").value = "";
@@ -369,7 +370,7 @@ function check_date() {
   var yyyy = Number(string[6] + string[7] + string[8] + string[9]);
   // Độ dài
   if (string.length != 10) {
-    warningText.innerHTML = "Định dạng: mm/dd/yyy";
+    warningText.innerHTML = "Định dạng: mm/dd/yyyy";
     result = false;
   }
   // Biểu mẫu
