@@ -35,7 +35,7 @@ function add_Staff() {
       listOfStaff[i].staffID == _staffID ||
       listOfStaff[i].staffEmail == _staffEmail
     ) {
-      return alert("Sai thông tin");
+      return alert("Thông tin id/email đã tồn tại");
     }
   }
   listOfStaff.push(staff);
@@ -247,12 +247,12 @@ function check_required(input, config) {
   if (input.length == 0) {
     document.getElementById(config.errorID).innerHTML = "Không được để trống";
     document.getElementById(config.errorID).style.display = "inline-block";
-    console.log("chưa nhập");
+    // console.log("chưa nhập");
     return false;
   }
   document.getElementById(config.errorID).innerHTML = "";
   document.getElementById(config.errorID).style.display = "none";
-  console.log("đã nhập");
+  // console.log("đã nhập");
   return true;
 }
 //Check Length
@@ -262,12 +262,12 @@ function check_length(value, config) {
       config.errorID
     ).innerHTML = `*Độ dài từ ${config.min} đến ${config.max} ký tự`;
     document.getElementById(config.errorID).style.display = "inline-block";
-    console.log("Sai độ dài");
+    // console.log("Sai độ dài");
     return false;
   }
   document.getElementById(config.errorID).innerHTML = "";
   document.getElementById(config.errorID).style.display = "none";
-  console.log("đúng độ dài");
+  // console.log("đúng độ dài");
   return true;
 }
 //Check Input patten
@@ -326,14 +326,14 @@ function check_value(value, obj) {
   if (value >= obj.min && value <= obj.max) {
     document.getElementById(obj.errorID).innerHTML = "";
     document.getElementById(obj.errorID).style.display = "none";
-    console.log("Giá trị OK");
+    // console.log("Giá trị OK");
     return true;
   }
   document.getElementById(
     obj.errorID
   ).innerHTML = `Có giá trị từ ${obj.min} đến ${obj.max}`;
   document.getElementById(obj.errorID).style.display = "inline-block";
-  console.log("Giá trị sai");
+  // console.log("Giá trị sai");
   return false;
 }
 // Check Position
@@ -481,7 +481,7 @@ function form_validate() {
       max: 20000000,
     });
 
-  // *****valid chức vụ: không để trống: xong
+  // *****valid chức vụ: không để trống:
   var position = document.getElementById("chucvu").value;
   var positionValid = check_staffPosition(position);
 
@@ -503,7 +503,7 @@ function form_validate() {
     salaryValid &&
     positionValid &&
     workingHoursValid;
-  console.log(isAcceptForm);
+  // console.log(isAcceptForm);
   return isAcceptForm;
 }
 /************************************** */
