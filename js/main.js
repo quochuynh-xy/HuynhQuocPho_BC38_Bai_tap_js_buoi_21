@@ -162,7 +162,7 @@ function cancel_edit_Staff() {
   document.getElementById("datepicker").placeholder = "mm/dd/yyyy";
   document.getElementById("datepicker").value = "";
   document.getElementById("luongCB").value = "";
-  document.getElementById("chucvu").value = "";
+  document.getElementById("chucvu").value = "Chọn chức vụ";
   document.getElementById("gioLam").value = "";
   //hide arlert:
   var notifyList = document.querySelectorAll(".js-tb");
