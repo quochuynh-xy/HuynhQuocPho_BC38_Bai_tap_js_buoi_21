@@ -1,24 +1,31 @@
 .sp-thongbao {
   color: red;
-  margin-left: 2px; 
+  margin-left: 2px;
   display: none;
 }
 
-#SapXepGiam{
-	display: none;
+#SapXepGiam {
+  display: none;
 }
 
-#content{
-	width: 100%;
-	background: #74ebd5;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #ACB6E5, #74ebd5);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #ACB6E5, #74ebd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+#content {
+  width: 100%;
+  background: #74ebd5; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #acb6e5,
+    #74ebd5
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #acb6e5,
+    #74ebd5
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-
-.myCardHeader, .myCardFooter{
-	background-color: transparent;       
+.myCardHeader,
+.myCardFooter {
+  background-color: transparent;
 }
 /* ***********CSS */
 td .fa.fa-edit,
@@ -26,6 +33,7 @@ td .fa.fa-trash {
   color: #ff5100;
   font-size: 1.2rem;
   transition-duration: 0.3s;
+  position: relative;
 }
 td .fa.fa-trash {
   color: black;
@@ -34,4 +42,24 @@ td .fa.fa-edit:hover,
 td .fa.fa-trash:hover {
   cursor: pointer;
   color: green;
+}
+td .fa.fa-edit::after {
+  position: absolute;
+  content: "Sửa";
+  display: none;
+  right: -36px;
+  bottom: 8px;
+  color: blue;
+}
+td .fa.fa-trash::after {
+  position: absolute;
+  content: "Xóa";
+  display: none;
+  right: -36px;
+  bottom: 10px;
+  color: blue;
+}
+td .fa.fa-edit:hover::after,
+td .fa.fa-trash:hover::after {
+ display: inline;
 }
