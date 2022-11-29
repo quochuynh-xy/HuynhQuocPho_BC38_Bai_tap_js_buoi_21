@@ -113,7 +113,7 @@ function edit_Staff(id) {
     btnXoa.innerHTML = "Xóa";
     btnXoa.id = "btnXoa";
     btnXoa.className = "btn btn-secondary";
-    btnXoa.onclick = function () { delete_Staff()};
+    btnXoa.onclick = function () { delete_Staff(); cancel_edit_Staff()};
     modalFooter.appendChild(btnXoa);
   } else {
     // Nếu đã có nút xóa thì phải hiện nó lên
