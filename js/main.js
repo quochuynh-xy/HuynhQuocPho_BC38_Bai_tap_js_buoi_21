@@ -47,8 +47,10 @@ function add_Staff() {
 function delete_Staff(id) {
   var warning = confirm("Không thể khôi phục việc xóa dữ liệu");
   if (warning == false) return
-  if(!id) {
+  console.log("gia tri cua id", id);
+  if(typeof id != "string") {
    id = document.getElementById("tknv").value;
+   console.log(id);
   }
   for (let i = 0; i < listOfStaff.length; i++) {
     if (listOfStaff[i].staffID === id) {
@@ -439,7 +441,7 @@ function form_validate() {
   var pattenID = /^([0-9])+$/g;
   var pattenName = /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ\s\W|_]+$/g;
   // var pattenName = /^([A-z ])+$/g;
-  var pattenEmail = /[A-z_0-9.-]+@[A-z-]+(.)(com|edu|net)/g;
+  var pattenEmail = /^[A-z_0-9.-]+@[A-z-]+(.)(com|edu|net)$/g;
   // var pattenPassWord = /^(?=.*[A-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+{}|:";'<>,.?/])[a-zA-Z\d~!@#$%^&*()_+{}|:";'<>,.?/]{6,10}$/g
   var pattenPassWord =
     /^(?=.*[A-Z])(?=.*\d)(?=.*[~!@#$%^&*()_+{}|:";'<>,.?/])[a-zA-Z\d~!@#$%^&*()_+{}|:";'<>,.?/]{6,10}$/g;
