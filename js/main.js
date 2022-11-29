@@ -108,6 +108,9 @@ function edit_Staff(id) {
   // Kiểm tra nếu chưa có nút xóa thì thêm nút xóa
   if (!document.getElementById("btnXoa") == true) {
     var btnXoa = document.createElement("button");
+    var btnXoa_att = document.createAttribute("data-dismiss");
+        btnXoa_att.value = "modal";
+    btnXoa.setAttributeNode(btnXoa_att)
     btnXoa.innerHTML = "Xóa";
     btnXoa.id = "btnXoa";
     btnXoa.className = "btn btn-secondary";
