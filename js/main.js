@@ -47,8 +47,7 @@ function add_Staff() {
 function delete_Staff(id) {
   var warning = confirm("Không thể khôi phục việc xóa dữ liệu");
   if (warning == false) return
-  console.log("gia tri cua id", id);
-  if(typeof id != "string") {
+  if(!id) {
    id = document.getElementById("tknv").value;
    console.log(id);
   }
@@ -114,7 +113,7 @@ function edit_Staff(id) {
     btnXoa.innerHTML = "Xóa";
     btnXoa.id = "btnXoa";
     btnXoa.className = "btn btn-secondary";
-    btnXoa.onclick = delete_Staff;
+    btnXoa.onclick = function () { delete_Staff()};
     modalFooter.appendChild(btnXoa);
   } else {
     // Nếu đã có nút xóa thì phải hiện nó lên
