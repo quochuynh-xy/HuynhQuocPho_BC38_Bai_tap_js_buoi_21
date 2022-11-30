@@ -48,16 +48,24 @@ td .fa.fa-edit::after {
   content: "Sửa";
   display: none;
   right: -36px;
-  bottom: 8px;
+  bottom: 16px;
   color: blue;
+  padding: 2px 6px;
+  border-radius: 20%;
+  background-color:#ddd;
+  z-index: 10;
 }
 td .fa.fa-trash::after {
   position: absolute;
   content: "Xóa";
   display: none;
   right: -36px;
-  bottom: 10px;
+  bottom: 16px;
   color: blue;
+  padding: 2px 6px;
+  border-radius: 20%;
+  background-color:#ddd;
+  z-index: 10;
 }
 td .fa.fa-edit:hover::after,
 td .fa.fa-trash:hover::after {
